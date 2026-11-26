@@ -1,50 +1,76 @@
-# EXP-3-Interfacing-And-Controlling-Digital-Output-With-Development-Board-And-Ultrasonic-Sensor
+# Interfacing Ultrasonic Sensor with Arduino UNO
 
-## Aim:
+## Aim
 
-To interface an HC-SR04 ultrasonic sensor with an Arduino Uno and control a digital output (LED) based on the measured distance of an object.
+To interface an HC-SR04 ultrasonic sensor with an Arduino UNO development board and measure the distance of an object using ultrasonic waves.
 
-## Algorithm:
+## Components Required
 
-1. Initialize the TRIG, ECHO, and LED pins of the Arduino.
-2. Generate a 10-microsecond trigger pulse using the ultrasonic sensor.
-3. Read the echo pulse duration using the pulseIn() function.
-4. Calculate the distance in centimeters using the echo duration.
-5. If the distance is below the predefined threshold, turn ON the LED; otherwise, turn OFF the LED.
-6. Display the measured distance in the Serial Monitor and repeat the process continuously.
+1. Arduino UNO
 
-## Procedure:
+2. HC-SR04 Ultrasonic Sensor
 
-Open Tinkercad Circuits and create a new circuit.
-Place an Arduino Uno, HC-SR04 ultrasonic sensor, LED, and suitable resistor in the workspace.
-Connect the VCC pin of the ultrasonic sensor to the Arduino 5V pin.
-Connect the GND pin of the ultrasonic sensor to the Arduino GND.
-Connect the TRIG pin of the ultrasonic sensor to a digital pin of the Arduino.
-Connect the ECHO pin of the ultrasonic sensor to another digital pin of the Arduino.
-Connect the LED to a digital output pin through a suitable resistor.
-Write the Arduino program to generate a trigger pulse and calculate the distance using the echo time.
-Set a suitable distance threshold in the program.
-If the measured distance is below the threshold, turn ON the LED.
-If the measured distance is greater than the threshold, turn OFF the LED.
-Start the simulation in Tinkercad and observe the LED operation while changing the ultrasonic sensor distance.
-Verify that the digital output responds correctly to the measured distance.
-Algorithm
-Start
-Initialize the ultrasonic sensor pins and LED pin.
-Set the TRIG pin to LOW.
-Generate a short HIGH pulse on the TRIG pin.
-Read the duration of the signal received at the ECHO pin.
-Calculate the distance from the echo duration.
-Compare the measured distance with the predefined threshold.
-If the distance is less than the threshold, turn ON the LED.
-Otherwise, turn OFF the LED.
-Display or monitor the measured distance.
-Repeat the process continuously.
-Stop
+3. Breadboard
 
-## Code:
+4. Jumper Wires
 
-```C++
+5. USB Cable
+
+6. Computer with Arduino IDE
+
+## Algorithm
+
+1. Start the program.
+
+2. Define the Trigger pin as pin 9 and Echo pin as pin 10.
+
+3. Initialize the Trigger pin as OUTPUT and Echo pin as INPUT.
+
+4. Initialize serial communication at 9600 baud rate.
+
+5. Set the Trigger pin LOW for 2 microseconds.
+
+6. Set the Trigger pin HIGH for 10 microseconds to transmit an ultrasonic pulse.
+
+7. Set the Trigger pin LOW again.
+
+8. Measure the time taken by the ultrasonic pulse to return using the Echo pin.
+
+9. Calculate the distance using the measured duration.
+
+10. Display the distance in centimeters through the Serial Monitor.
+
+11. Wait for 500 milliseconds.
+
+12. Repeat the process continuously.
+
+## Procedure
+
+1. Connect the VCC pin of the HC-SR04 ultrasonic sensor to the 5V pin of the Arduino UNO.
+
+2. Connect the GND pin of the sensor to the GND pin of the Arduino.
+
+3. Connect the TRIG pin of the sensor to digital pin 9 of the Arduino.
+
+4. Connect the ECHO pin of the sensor to digital pin 10 of the Arduino.
+
+5. Open Arduino IDE and write the program.
+
+6. Select the Arduino UNO board and the appropriate COM port.
+
+7. Upload the program to the Arduino UNO.
+
+8. Open the Serial Monitor and set the baud rate to 9600.
+
+9. Place an object in front of the ultrasonic sensor.
+
+10. Observe the measured distance displayed in centimeters.
+
+## Program
+
+## Developed By : MOHAMMED JASITH J
+## Register NUmber: 212225230180
+```
 const int trigPin = 9;
 const int echoPin = 10;
 
@@ -57,28 +83,33 @@ void setup() {
 void loop() {
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
-  
+
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
-  
+
   long duration = pulseIn(echoPin, HIGH);
-  int distance = duration * 0.0343 / 2; // Speed of sound wave divided by 2 (to and fro)
-  
+  int distance = duration * 0.0343 / 2;
+
   Serial.print("Distance: ");
   Serial.print(distance);
   Serial.println(" cm");
-  
+
   delay(500);
 }
 ```
 
-## Output:
+## Output
 
-<img width="1332" height="692" alt="WhatsApp Image 2026-11-20 at 8 31 10 AM" src="https://github.com/user-attachments/assets/776a667b-8fb4-4dce-848e-5f6779138936" />
-<img width="1919" height="822" alt="image" src="https://github.com/user-attachments/assets/1920c582-5491-4227-bc31-0012e361750f" />
-<img width="1919" height="832" alt="image" src="https://github.com/user-attachments/assets/490dc40e-1b6a-4279-b1c7-8548c1545f74" />
+The distance of the object placed in front of the ultrasonic sensor is displayed in centimeters on the Serial Monitor.
 
-## Result:
+<img width="424" height="534" alt="image" src="https://github.com/user-attachments/assets/b6aef7c1-4126-42b0-8d60-1f21026ff47b" />
 
-The ultrasonic sensor was successfully interfaced with the development board in Tinkercad Circuits. The distance of an object was measured using the HC-SR04 sensor, and the LED was successfully controlled as a digital output according to the measured distance. The simulation worked successfully and demonstrated distance-based digital output control.
+
+<img width="430" height="533" alt="image" src="https://github.com/user-attachments/assets/ec3266a5-d3cf-4e89-8d87-d21dabfb5599" />
+
+
+## Result
+
+Thus, the HC-SR04 ultrasonic sensor was successfully interfaced with the Arduino UNO development board, and the distance of an object was measured and displayed in centimeters using ultrasonic waves.
+
